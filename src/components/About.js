@@ -107,7 +107,6 @@ export default function About() {
           </div>
         </div>
       </div>
-      <button className="btn btn-outline-dark my-3" style={Dark} onClick={handleDarkMode}>{ChangeText}</button>
     </div>
   );
 }
