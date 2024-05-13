@@ -78,22 +78,22 @@ export default function Textform(props) {
           ></textarea>
         </div>
         <div className="btns d-flex justify-content-center flex-wrap">
-          <button className="btn btn-primary my-2 " onClick={handleUpClick}>
+          <button className="btn btn-primary my-2 " disabled={text.length===0} onClick={handleUpClick}>
             Convert to UpperCase
           </button>
-          <button className="btn btn-primary my-2 mx-2" onClick={handleLowClick}>
+          <button className="btn btn-primary my-2 mx-2"  disabled={text.length===0} onClick={handleLowClick}>
             Convert to LowerCase
           </button>
-          <button className="btn btn-primary my-2" onClick={handleSortClick}>
+          <button className="btn btn-primary my-2" disabled={text.length===0} onClick={handleSortClick}>
             Sort Text
           </button>
-          <button className="btn btn-primary my-2 mx-2" onClick={handleClearClick}>
+          <button className="btn btn-primary my-2 mx-2" disabled={text.length===0} onClick={handleClearClick}>
             Clear
           </button>
-          <button className="btn btn-primary my-2 " onClick={handleCopyClick}>
+          <button className="btn btn-primary my-2 " disabled={text.length===0} onClick={handleCopyClick}>
             Copy
           </button>
-          <button className="btn btn-primary my-2 mx-2 " onClick={handleExtraClick}>
+          <button className="btn btn-primary my-2 mx-2 " disabled={text.length===0} onClick={handleExtraClick}>
             Extra space remove
           </button>
         </div>
@@ -118,21 +118,21 @@ export default function Textform(props) {
         <h3 className={`text-${props.mode==="light"?"dark":"light"}`}>Your Text Summary</h3>
         <p className={`text-${props.mode==="light"?"dark":"light"}`}>
           <b>
-            {text.split(" ").length} Words and {text.length} Characters
+            {text.split(" ").filter((e)=>{return e.length!==0}).length} Words and {text.length} Characters
           </b>
         </p>
         <p className={`text-${props.mode==="light"?"dark":"light"}`}>
-          <b>{0.03 * text.split(" ").length}min to read</b>
+          <b>{0.03 * text.split(" ").filter((e)=>{return e.length!==0}).length} min to read</b>
         </p>
         <h2 className={`text-${props.mode==="light"?"dark":"light"}`}>Preview</h2>
         <p className={`text-${props.mode==="light"?"dark":"light"}`} style={color}>{text.length>=1?text:"Enter something to preview here"}</p>
-      </div>
+      
       <hr className={`text-${props.mode==="light"?"dark":"light"}`}/>
       <div className="img">
         <div className="img-btn">
           <input
             type="text"
-            placeholder="Enter Url"
+            placeholder="Enter Image Url"
             value={Url}
             onChange={handleUrlChange}
           />
@@ -141,6 +141,7 @@ export default function Textform(props) {
           </button>
         </div>
         <img className={`text-${props.mode==="light"?"dark":"light"}`} src={SUrl} alt='' />
+      </div>
       </div>
     </>
   );
